@@ -7,11 +7,7 @@ const port = 5000;
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
 
-// const person = {
-//   name: 'ram'
-// };
-// person.age = 90;
-// console.log(person);
+
 mongoose.connect('mongodb+srv://teams700:moles900@cluster0.no9horl.mongodb.net/Shops').then((result) => {
 
   app.listen(port, () => {
@@ -21,7 +17,7 @@ mongoose.connect('mongodb+srv://teams700:moles900@cluster0.no9horl.mongodb.net/S
   console.log(err);
 })
 
-
+app.use('/uploads', express.static('uploads'))
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
