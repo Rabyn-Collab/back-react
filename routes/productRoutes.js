@@ -8,6 +8,9 @@ const router = express.Router();
 const notAllowed = (req, res) => res.status(405).json('method not allowed');
 
 
+router.route('/').get((req, res) => {
+  return res.status(200).json('Welcome to shop backs');
+}).all(notAllowed);
 
 router.route('/api/products').get(getAllProducts).all(notAllowed);
 router.route('/api/product/:id').get(getProduct).delete(authCheck, adminCheck, removeProduct).patch(authCheck, adminCheck, updateProduct).all(notAllowed);
