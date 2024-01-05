@@ -1,7 +1,7 @@
 const express = require('express');
 const { getAllProducts, addProduct, getProduct, removeProduct, updateProduct } = require('../controllers/productController');
 const { authCheck, adminCheck } = require('../middlewares/auth_middleware');
-const { fileCheck } = require('../middlewares/file_check');
+const { fileCheck, updateCheck } = require('../middlewares/file_check');
 const router = express.Router();
 
 
@@ -13,8 +13,10 @@ router.route('/').get((req, res) => {
 }).all(notAllowed);
 
 router.route('/api/products').get(getAllProducts).all(notAllowed);
-router.route('/api/product/:id').get(getProduct).delete(authCheck, adminCheck, removeProduct).patch(authCheck, adminCheck, updateProduct).all(notAllowed);
-router.route('/api/add-product').post(authCheck, adminCheck, fileCheck, addProduct).all(notAllowed);
+router.route('/api/product/:id').get(getProduct).delete(authCheck, adminCheck, removeProduct).patch(authCheck, adminCheck,
+  updateCheck, updateProduct).all(notAllowed);
+router.route('/api/add-product').post(authCheck, adminCheck,
+  fileCheck, addProduct).all(notAllowed);
 
 
 

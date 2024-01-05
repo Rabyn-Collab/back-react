@@ -32,9 +32,8 @@ module.exports.updateCheck = (req, res, next) => {
   if (!req.files?.product_image) {
     next();
   } else {
-
-    fs.unlink(`./uploads/${req.prevImage}`, (err) => {
-
+    fs.unlink(`.${req.body.prevImage}`, (err) => {
+      console.log(err);
     });
     const file = req.files?.product_image;
     const exts = ['.png', '.jpeg', '.jpg'];
