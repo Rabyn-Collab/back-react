@@ -13,7 +13,7 @@ module.exports.fileCheck = (req, res, next) => {
       file.mv(`./uploads/${file.name}`, (err) => {
 
       });
-      req.imagePath = `./uploads/${file.name}`;
+      req.imagePath = `/uploads/${file.name}`;
 
       next();
     } else {
@@ -55,3 +55,5 @@ module.exports.updateCheck = (req, res, next) => {
 
 
 }
+
+
