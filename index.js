@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes');
+const orderRoutes = require('./routes/orderRoutes');
 const mongoose = require('mongoose');
 const port = 5000;
 const cors = require('cors');
@@ -29,6 +30,7 @@ app.use(fileUpload({
 
 app.use(authRoutes);
 app.use(productRoutes);
+app.use(orderRoutes);
 
 
 
