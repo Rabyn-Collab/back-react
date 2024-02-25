@@ -26,7 +26,7 @@ module.exports.fileCheck = (req, res, next) => {
 
 
 }
-
+// test
 
 module.exports.updateCheck = (req, res, next) => {
   if (!req.files?.product_image) {
