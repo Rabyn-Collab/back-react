@@ -74,7 +74,7 @@ module.exports.userUpdate = async (req, res) => {
       existUser.fullname = fullname || existUser.fullname;
       existUser.shippingAddress = shippingAddress || existUser.shippingAddress;
       await existUser.save();
-      return res.status(200).json('successfully update');
+      return res.status(200).json(existUser);
     } else {
       return res.status(401).json('user not found');
     }
