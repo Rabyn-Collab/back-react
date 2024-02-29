@@ -74,7 +74,21 @@ module.exports.userUpdate = async (req, res) => {
       existUser.fullname = fullname || existUser.fullname;
       existUser.shippingAddress = shippingAddress || existUser.shippingAddress;
       await existUser.save();
-      return res.status(200).json(existUser);
+
+      const token = jwt.sign({
+        id: existUser._id,
+        isAdmin: existUser.isAdmin
+      }, 'webtoken');
+
+      return res.status(200).json({
+        token,
+        id: existUser._id,
+        isAdmin: existUser.isAdmin,
+        message: 'successfully login',
+        email: existUser.email,
+        fullname: existUser.fullname,
+        shippingAddress: existUser.shippingAddress
+      });
     } else {
       return res.status(401).json('user not found');
     }
